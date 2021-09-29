@@ -12,6 +12,9 @@ const styles= StyleSheet.create({
       fontWeight: 'bold',
       color: '#0f0a0a'
       
+    },
+    safeArea:{
+      flex: 1
     }
 })
 

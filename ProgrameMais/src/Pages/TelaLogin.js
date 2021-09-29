@@ -22,7 +22,7 @@ function Login({navigation}){
 
         const {data} = await axios.post(config.urlNode+"login", userData);
         //console.log(data.user[0].nome);
-        console.log(navigation)
+        //console.log(navigation)
         //console.log(data)
 
         if (data !== "Login incorreto!"){
@@ -31,7 +31,7 @@ function Login({navigation}){
         }else if(data === "Login incorreto!"){
             
             alert("Usuario não localizado");
-            navigation.navigate('Cadastrar', Cadastro);
+           // navigation.navigate('Cadastrar', Cadastro);
             
         }
 

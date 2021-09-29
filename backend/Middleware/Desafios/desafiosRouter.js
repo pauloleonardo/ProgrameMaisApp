@@ -22,20 +22,13 @@ function misturaArray(arr) {
 
 function workQuestion(quest){
 
-    //let idQuest;
     misturaArray(quest);
-    //console.log(quest.length)
-    
-    //quest = quest.slice(3,quest.length);
-    
-    
-    //console.log("depois do "+quest.length);
     return quest;
-    //console.log(quest);
 }
 
 function getAlternativas(quest, answ){
-    
+    let prov =[];
+    let perg;
     // assegurando a resposta correta
     let correct = answ[0];
     //excluindo a resposta correta do array
@@ -51,9 +44,18 @@ function getAlternativas(quest, answ){
     //mandando a resposta correta no final do array junto com as respostas erradas
     answ.push(correct);
     //Incluindo a questao no array de prova
-    prova.push(quest);
-    //Incluindo as respostas ja embaralhadas com a questao
-    prova.push(answ);
+    perg ={
+        id_questao: quest.id_questao,
+        questao: quest.questao,
+        a: answ[0].resposta_correta,
+        b: answ[1].resposta_correta,
+        c: answ[2].resposta_correta,
+        d: answ[3].resposta_correta,
+        corect: answ[4].resposta_correta
+    }
+    
+    prova.push(perg);
+    //console.log(perg);
 
 }
 
@@ -65,17 +67,18 @@ router.get("/language/:lang", async (req, res)=>{
     let answers = await db.getAnswer(questFinal[0].id_questao);
     getAlternativas(questFinal[0], answers);
     answers = [];
-    console.log(questFinal[0].id_questao);
+    //console.log(questFinal[0].id_questao);
     answers = await db.getAnswer(questFinal[1].id_questao);
     getAlternativas(questFinal[1], answers);
     answers = [];
-    console.log(questFinal[1].id_questao);
+    //console.log(questFinal[1].id_questao);
     answers = await db.getAnswer(questFinal[2].id_questao);
     getAlternativas(questFinal[2], answers);
     answers=[];
-    console.log(questFinal[2].id_questao);
+    //console.log(questFinal[2].id_questao);
     
     res.send(prova);
+    //console.log(prova);
     prova=[];
 });
 

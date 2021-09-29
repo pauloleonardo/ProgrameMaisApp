@@ -19,13 +19,13 @@ function Cadastrar({navigation}){
             "usuario" : username,
             "senha" : password,
             "nome" : name,
-            "confirmaSenha": confirmPass
+            "confirmaSenha": confirmPass,
         }
 
         event.preventDefault();
 
         const {data} = await axios.post(`${config.urlNode}cadastrar`, userData);
-        console.log(data)
+        console.log(data);
 
         if (data.codigo !== 1 ){
                 alert(data);   
@@ -72,7 +72,7 @@ function Cadastrar({navigation}){
                 <Button 
                     mode="contained" 
                     onPress={handleSubmit}
-                    >Entrar</Button>
+                    >Cadastrar</Button>
             </View>
 
         </View>
