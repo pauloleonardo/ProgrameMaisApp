@@ -3,16 +3,16 @@ import { Text, View, TouchableHighlight, ScrollView, SafeAreaView } from 'react-
 import styles from "../../assets/CSS/stylesCss.js";
 import config from "../../Config/config.json";
 import axios from "axios";
-import Radio from "../components/Radio.js"
+import Radio from "../components/Radio.js";
 //import { RadioButton } from 'react-native-paper';
 
 
 function Questionario(props){
-    const ling = props.route.params.text;
+    //const ling = props.route.params.text;
     
 
     const [listQuestoes, setListQuestoes] = useState([]);
-    const [selecionado, setSelecionado] = useState([]);
+    const [selecionado, setSelecionado] = useState();
     
 
 
@@ -27,23 +27,28 @@ function Questionario(props){
     }, []);
     
     //<Text style={styles.resposta}>{`${a}`}</Text>
-    console.log(listQuestoes);
+    //let a =listQuestoes[0].correct;
+    //console.log(a);
 
-    const textElements = listQuestoes.map((list) =>{
+    const textElements = listQuestoes.map((list, index) =>{
         const {id_questao, questao , a, b, c, d} = list;
         //console.log(id_questao)
     
         return(
             <View>
                 <SafeAreaView style={styles.safeArea}>  
+                
                     <Radio
-                        key={id_questao}
+                        key={index}
                         question={questao} 
                         options={[a,b,c,d]}
+                        chave={id_questao}
+                        indiceQuest={index}
                         selected = {selecionado} 
                         horizontal= {true}
                         onChangeSelect={(ind)=>setSelecionado(ind)}
                     />
+                
                 </SafeAreaView>
             </View>
             

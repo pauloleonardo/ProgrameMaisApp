@@ -1,16 +1,24 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 
-const Radio = (props)=>{
+
+
+const Radio = ({question, options, chave,indiceQuest,selected, horizontal, onChangeSelect })=>{
     //console.log({key});{key, question, options, onChangeSelect, selected}
-    const prop = props;
-    console.log(prop);
+    //const prop = props;
+    //console.log(question);
+    //console.log(ideci);
+
+    /*return(
+        <View><Text>options</Text></View>
+    );*/
     return(
         <View >
             <Text>{question}</Text>
-            {options.map(( opcao, indice)=>
+            {options.map((opcao, indice)=>
                 <TouchableOpacity style={styles.containerOpcoes }
-                    onPress={()=> onChangeSelect(opcao,  indice)}>
+                    onPress={()=> onChangeSelect(opcao)}
+                    >
                     <View style={styles.circuloExterno}>
                         {selected === indice && <View style={styles.circuloInterno}/>}
                     </View>

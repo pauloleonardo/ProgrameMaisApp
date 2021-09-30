@@ -30,7 +30,7 @@ function Desafios(props) {
       });
   }, []);
 
-  console.log(desafio);
+  //console.log(desafio);
     return (
       <ScrollView>
 
