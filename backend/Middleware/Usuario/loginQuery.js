@@ -7,6 +7,7 @@ async function logar(usuario, senha){
     const [rows] = await conn.query(sql, dtLogin);
     
     return rows;
+    //conn.end();
 
 }
 
