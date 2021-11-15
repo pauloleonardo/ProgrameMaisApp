@@ -35,4 +35,13 @@ async function obterRespostas(id_questao){
     return rows;
 }
 
-export default {getQuestion, getAnswer, obterRespostas}
+async function getLastResult(id_user){
+    const conn = await database.connect();
+    const sql = `SELECT last_tent from usuarios WHERE id_usuario = ?`;
+    const sqlData = parseInt(id_user);
+
+    const [rows] = await conn.query(sql, sqlData);
+    return rows;
+}
+
+export default {getQuestion, getAnswer, obterRespostas, getLastResult}
