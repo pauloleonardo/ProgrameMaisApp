@@ -5,9 +5,9 @@ async function logar(usuario, senha){
     const sql = "SELECT * FROM usuarios WHERE usuario=? AND senha=?";
     const dtLogin = [usuario, senha];
     const [rows] = await conn.query(sql, dtLogin);
+    conn.end();
     
     return rows;
-    //conn.end();
 
 }
 

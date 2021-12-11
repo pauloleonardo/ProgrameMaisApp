@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 
-
 const styles= StyleSheet.create({
     container:{
         flex:1,
@@ -10,11 +9,347 @@ const styles= StyleSheet.create({
     text:{
       fontSize: 25,
       fontWeight: 'bold',
-      color: '#0f0a0a'
+      color: '#0f0a0a',
       
+    },
+    pageColor: {
+      backgroundColor: 'white'
+    },
+    questaoDivisao: {
+      backgroundColor: '#E2F9FF',
+      borderBottomColor:"#bbb",
+      borderBottomWidth: 4,
+    },
+    resposta:{
+      fontSize: 15,
+      color: '#0f0a0a',
+      padding: 10,
+    },
+    pergunta:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#0f0a0a',
+        padding: 10
     },
     safeArea:{
       flex: 1
+    },
+    loading:{
+      fontSize: 20,
+      color:'#F00'
+    },
+    divisao:{
+      backgroundColor: "#004383",
+      shadowColor: '#f59342',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 1,  
+      elevation: 2
+    },
+    containerExi: {
+      borderRadius: 5,
+      marginLeft: 10,
+      marginRight: 10,
+      marginTop: 15,
+      marginBottom: 10,
+      padding: 10,
+      shadowColor: '#f59342',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 1,  
+      elevation: 2,
+      backgroundColor: "#0075cd"
+    },
+    textCompo:{
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: 'white',
+      padding: 20,
+    },
+    //Estilização do dicionario
+    palavrasDesc:{
+      fontSize: 15,
+      color: 'white',
+      padding: 5,
+      marginLeft: 10,
+      marginRight: 10
+    },
+    diciPalavra:{
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: 'white',
+      padding: 5,
+      marginLeft: 10,
+      marginRight: 10
+    },
+    //Estilização dos Parceiros
+    descParceiro:{
+      fontSize: 15,
+      color: 'white',
+      padding: 5,
+      marginLeft: 10,
+      marginRight: 10
+    },
+    nomeParceiro:{
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: 'white',
+      padding: 5,
+      marginLeft: 10,
+      marginRight: 10
+    },
+    //Estilização da guia de Estudos
+    descGuia:{
+      fontSize: 15,
+      color: 'white',
+      padding: 5,
+      marginLeft: 10,
+      marginRight: 10
+    },
+    guia:{
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: 'white',
+      padding: 5,
+      marginLeft: 10,
+      marginRight: 10
+    },
+    //Estilização da page Palavras
+    palavraNome:{
+      fontSize: 20,
+      padding: 10
+    },
+    palavrasDescricao: {
+      fontSize: 15,
+      textAlign: 'center',
+      padding: 10,
+      color: 'white'
+    },
+    boxExep: {
+      fontSize: 15,
+      textAlign: 'center',
+      padding: 10,
+      color: 'white'
+    },
+    containerPala:{
+      flex:1,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    descricaoColor:{
+      backgroundColor: "#b97c77",
+      borderRadius: 5,
+      width: 370,
+      marginLeft: 5,
+      marginRight: 5,
+      marginTop: 20,
+      marginBottom: 10,
+      padding: 10,
+      shadowColor: '#f59342',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 1,  
+      elevation: 2
+    },
+    palaColor1:{
+      backgroundColor: "#004383",
+      borderRadius: 5,
+      width: 370,
+      marginLeft: 5,
+      marginRight: 5,
+      marginTop: 15,
+      marginBottom: 10,
+      padding: 10,
+      shadowColor: '#f59342',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 1,  
+      elevation: 2
+    },
+    palaColor2:{
+      backgroundColor: "#0075cd",
+      borderRadius: 5,
+      width: 370,
+      marginLeft: 5,
+      marginRight: 5,
+      marginTop: 15,
+      marginBottom: 10,
+      padding: 10,
+      shadowColor: '#f59342',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 1,  
+      elevation: 2
+    },
+    palaColor3:{
+      backgroundColor: "#457ade",
+      borderRadius: 5,
+      width: 370,
+      marginLeft: 5,
+      marginRight: 5,
+      marginTop: 15,
+      marginBottom: 30,
+      padding: 10,
+      shadowColor: '#f59342',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 1,  
+      elevation: 2
+    },
+     //Estilização da page Estudos
+     guiaNome:{
+      fontSize: 20,
+      padding: 10,
+      fontWeight: 'bold'
+    },
+    guiaDescricao: {
+      fontSize: 15,
+      textAlign: 'center',
+      padding: 10,
+      color: 'white'
+    },
+    guiaExep: {
+      fontSize: 20,
+      textAlign: 'center',
+      padding: 10,
+      color: 'white'
+    },
+    linkGuia: {
+      fontSize: 15,
+      textAlign: 'center',
+      color: 'blue',
+      padding: 10
+    },
+    //Novidades
+    newsDesc:{
+      fontSize: 15,
+      color: 'white',
+      padding: 5,
+      marginLeft: 10,
+      marginRight: 10
+    },
+    newsTitle:{
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: 'white',
+      padding: 5,
+      marginLeft: 10,
+      marginRight: 10
+    },
+    image:{
+      marginLeft: 10,
+      marginTop: 10,
+      marginBottom: 10,
+      marginRight: 10,
+      width: 330,
+      height: 470
+    },
+    modal: {
+      backgroundColor: 'white',
+      borderRadius: 4,
+      marginLeft: 15,
+      marginRight: 15,
+      marginTop: 300,
+      marginBottom: 300,
+      padding: 10,
+      shadowColor: '#f59342',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 1,  
+      elevation: 2,
+      display: 'flex',
+      flexDirection: 'column',
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    butt:{
+      height: 40,
+      width: 340, 
+      marginBottom: 20,
+      marginLeft: 0
+    },
+    input: {
+      height: 40,
+      width: 340,
+      margin: 12,
+      borderWidth: 1,
+      padding: 10,
+    },
+    entrar:{
+      backgroundColor: '#0075cd',
+      
+    },
+    modalCad: {
+      backgroundColor: 'white',
+      borderRadius: 4,
+      marginLeft: 15,
+      marginRight: 15,
+      marginTop: 200,
+      marginBottom: 300,
+      padding: 10,
+      shadowColor: '#f59342',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 1,  
+      elevation: 2,
+      display: 'flex',
+      flexDirection: 'column',
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    /*   Maexi a partir daqui*/ 
+    btn:{
+      margin: 10,
+      padding: 10
+    },
+    altFormat:{
+      fontSize: 20,
+      borderWidth:2,
+      borderTopLeftRadius: 20,
+      borderBottomRightRadius: 20,
+      margin:3,
+      width: 400,
+      padding:10
+    },
+    questFormat:{
+      fontSize:20,
+      
+      marginTop: 10,
+      textAlign:"center",
+      fontWeight: "bold"
+    },
+    fontStyle:{
+      marginLeft:10,
+      fontSize:17
+    },
+    questoes:{
+      flex: 2,
+      borderWidth:2,
+      marginLeft: 2,
+      marginRight: 2,
+      marginTop:10,
+      borderRadius: 10,
+      paddingBottom:10,
+      backgroundColor: "#e1e1e1",
+      
+      
+    },
+    load:{
+      flex: 1,
+      alignItems:"center",
+      justifyContent: "center"
+      
+    },
+    img:{
+      width:100,
+      height:100
+    },
+    flatStyle:{
+      flex:1,
+      height:200,
+      justifyContent: "center"
     }
 })
 

@@ -1,63 +1,37 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableHighlight} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
+import styles from '../../assets/CSS/stylesCss';
 
 function DicionarioList({dici, navigation}){
-    if (dici.length != 0){
-        const textElements = dici.map((dicionario) =>{
-            const {id_python, descricao, palavra} = dicionario;
+
+    if (dici.length != 0){//Pego todas informaçoes que mandei da page e extraio eles aqui
+        const textElements = dici.map((dicionario) =>{//Faço um destruturing para ficar mais fácil
+            const {id_palavra, descricao, palavra} = dicionario;// de trablaha com as informações
             
           return(
-            <TouchableHighlight onPress={()=>{
-                navigation.navigate("Palavras",{dicionario});//Pode remover, isso vai para a palavra individual
-            }} key={id_python}>
-                <View style={styles.container}>
-                    <Text style={styles.dicionario}>{`${palavra}`}</Text>
-                    <Text style={styles.palavras}>{`${descricao}`}</Text>
+            <TouchableOpacity onPress={()=>{//Deixo as palavra clicaveis
+                navigation.navigate("Palavras",{dicionario});//Faço a nevageção para a palavra selecionada       
+            }} key={id_palavra}>
+                <View style={styles.containerExi}>{/*Aqui faço a exbição das palavras em container */}
+                    <Text style={styles.diciPalavra}>{`${palavra}`}</Text>
+                    <Text style={styles.palavrasDesc}>{`${descricao}`}</Text>
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
           )
         });
 
-        
-    
         return(
             <View>
+                {/*Carego os dados para a tela */}
                 {textElements}
             </View>
         );
     }
 
     return(
-        <Text style={styles.loading}>Carregando os dados...</Text>
+        <Text style={styles.loading}>Carregando os dados...
+        {/*Enquanto não termina o carregamento dos dados */}</Text>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#E2F9FF',
-        borderBottomColor:"#bbb",
-        borderBottomWidth: 4,
-    },
-    text:{
-        fontSize: 15,
-        paddingLeft: 20,
-        flex: 1
-    },
-    loading:{
-        fontSize: 20,
-        color:'#F00'
-    },
-    palavras:{
-      fontSize: 15,
-      color: '#0f0a0a',
-      padding: 10,
-    },
-    dicionario:{
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#0f0a0a',
-    },
-  });
-
 
 export default DicionarioList;

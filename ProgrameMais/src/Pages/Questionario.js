@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
-import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, FlatList } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, DraggableList, ScrollView, FlatList,Image } from 'react-native';
 import styles from "../../assets/CSS/stylesCss.js";
 import config from "../../Config/config.json";
 import axios from "axios";
 import {Button} from 'react-native-paper';
+
 
 
 function Questionario(props){
@@ -24,13 +25,6 @@ function Questionario(props){
     }, []);
 
     function conferir(resp1, resp2, resp3){
-
-      /*if(listQuestoes[0].corect == listQuestoes[0].alternativas[resp1-1].alternativa){
-        console.log(listQuestoes[0].corect + " é igual "+ resp1);
-      }else{
-        console.log(listQuestoes[0].corect);
-      }*/
-      //let msg;
       
       if(resp2 === 4){
         resp2 = 0;
@@ -53,8 +47,6 @@ function Questionario(props){
       }
       if(listQuestoes[0].corect !== listQuestoes[0].alternativas[resp1].alternativa && listQuestoes[1].corect !== listQuestoes[1].alternativas[resp2].alternativa && listQuestoes[2].corect !== listQuestoes[2].alternativas[resp3].alternativa){
         //0
-       // msg = "0 Acertos de 3";
-        //return msg;
         alert("0 Acertos de 3");
         
       }else if(listQuestoes[0].corect === listQuestoes[0].alternativas[resp1].alternativa && listQuestoes[1].corect !== listQuestoes[1].alternativas[resp2].alternativa && listQuestoes[2].corect !== listQuestoes[2].alternativas[resp3].alternativa ||
@@ -72,15 +64,17 @@ function Questionario(props){
         //return msg;
       }else if(listQuestoes[0].corect === listQuestoes[0].alternativas[resp1].alternativa && listQuestoes[1].corect === listQuestoes[1].alternativas[resp2].alternativa && listQuestoes[2].corect === listQuestoes[2].alternativas[resp3].alternativa){
         //3
-        alert("Parabéns!!!\n 3 Acertos de 3"+" "+selectedIdQuest3);
+        alert("Parabéns!!!\n 3 Acertos de 3");
         
         //return msg;
       }
     }
     
     const Item = ({ item, onPress, backgroundColor, textColor }) => (
-        <TouchableOpacity onPress={onPress}  style={[styles.item, backgroundColor]}>
-          <Text style={[styles.title, textColor]}>{item.alternativa}</Text>
+        <TouchableOpacity onPress={onPress}  style={[styles.item]}>
+          <View style={[styles.altFormat, backgroundColor]}>
+            <Text style={[ styles.fontStyle, textColor]}>{item.alternativa}</Text>
+          </View>
         </TouchableOpacity>
     );
     
@@ -92,13 +86,13 @@ function Questionario(props){
     let backgroundColor;
     let color;
     if(item.id<4){
-      backgroundColor = item.id === selectedIdQuest1 ? "#6e3b6e" : "#f9c2ff";
+      backgroundColor = item.id === selectedIdQuest1 ? "#004383" : "#fff";
       color = item.id === selectedIdQuest1 ? 'white' : 'black';
     }else if(item.id>3 && item.id<8){
-      backgroundColor = item.id === selectedIdQuest2 ? "#6e3b6e" : "#f9c2ff";
+      backgroundColor = item.id === selectedIdQuest2 ? "#004383" : "#fff";
       color = item.id === selectedIdQuest2 ? 'white' : 'black';
     }else if(item.id>7){
-        backgroundColor = item.id === selectedIdQuest3 ? "#6e3b6e" : "#f9c2ff";
+        backgroundColor = item.id === selectedIdQuest3 ? "#004383" : "#fff";
         color = item.id === selectedIdQuest3 ? 'white' : 'black';
       }
     
@@ -123,53 +117,69 @@ function Questionario(props){
   };
     if(quest3){
         return (
-            <SafeAreaView style={styles.container}>
-              <Text>{quest1.questao}</Text>
-              <FlatList
-                data={quest1.alternativas}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id.toString()}
-                extraData={selectedIdQuest1}
-              />
-              <Text>{quest2.questao}</Text>
-              <FlatList
-                data={quest2.alternativas}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id.toString()}
-                extraData={selectedIdQuest2}
-              />
-              <Text>{quest3.questao}</Text>
-              <FlatList
-                data={quest3.alternativas}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id.toString()}
-                extraData={selectedIdQuest3}
-              />
+
+          
+            <ScrollView>
+              <View style={styles.questoes}>
+                <View style={styles.flatStyle}>
+                  <Text style={styles.questFormat}>{quest1.questao}</Text>
+                </View>
+                <FlatList
+                  
+                  data={quest1.alternativas}
+                  renderItem={renderItem}
+                  keyExtractor={(item) => item.id.toString()}
+                  extraData={selectedIdQuest1}
+                  
+                />
+                
+              </View>
+              <View style={styles.questoes}>
+                <View style={styles.flatStyle}>
+                  <Text style={styles.questFormat}>{quest2.questao}</Text>
+                </View>
+                <FlatList
+                  
+                  data={quest2.alternativas}
+                  renderItem={renderItem}
+                  keyExtractor={(item) => item.id.toString()}
+                  extraData={selectedIdQuest2}
+                  
+                />
+              </View>
+              <View style={styles.questoes}>
+               <View style={styles.flatStyle}>
+                  <Text style={styles.questFormat}>{quest3.questao}</Text>
+                </View>
+                <FlatList
+                  data={quest3.alternativas}
+                  renderItem={renderItem}
+                  keyExtractor={(item) => item.id.toString()}
+                  extraData={selectedIdQuest3}
+                  
+                />
+              </View>
               <View>
-                <Button style={style.btn} mode="contained" 
+                <Button style={styles.btn} mode="contained" 
                   onPress={()=>conferir(selectedIdQuest1, selectedIdQuest2, selectedIdQuest3)}>
                   Conferir
                 </Button>
               </View>
               
-            </SafeAreaView>
+            </ScrollView>
+            
         );
         
     }
     else{
         return(
-            <View>
-                <Text>{props.route.params.text}</Text>
+            <View style={styles.load} vertical={true}>
+                <Text >Loading {props.route.params.text}</Text>
+                <Image style={styles.img} source={require('../../assets/IMG/load2.gif')} />
             </View>
         )
 
     }
 };
-const style= StyleSheet.create({
-  btn:{
-    margin: 10,
-    padding: 10
-  }
-});
 
 export default Questionario;

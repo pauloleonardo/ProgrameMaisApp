@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { Text, View, StyleSheet, ScrollView} from 'react-native';
+import { Text, View, ScrollView, Alert, TextInput, StyleSheet} from 'react-native';
 import React, { useState} from 'react';
-import { TextInput, Button  } from 'react-native-paper';
-import MainScreen from './MainScreen';
+import { Button  } from 'react-native-paper';
 import Cadastro from './Cadastro';
 import config from "../../Config/config.json";
+import styles from '../../assets/CSS/stylesCss';
 
 function Login({navigation}){
 
@@ -21,52 +21,63 @@ function Login({navigation}){
         event.preventDefault();
 
         const {data} = await axios.post(config.urlNode+"login", userData);
-        //console.log(data.user[0].nome);
-        //console.log(navigation)
-        //console.log(data)
 
         if (data !== "Login incorreto!"){
-            alert(data.user[0].nome);
-            navigation.navigate('Aprenda Programar', MainScreen);
+            Alert.alert("Olá", "Seja Bem Vindo!!!", [{text:"OK"}]);
+            navigation.navigate('Dicionario');
+            setUserName('')
+            setPassword('')
         }else if(data === "Login incorreto!"){
             
-            alert("Usuario não localizado");
-           // navigation.navigate('Cadastrar', Cadastro);
+            Alert.alert("Algo deu Errado","Verifique se seus dados estão corretos", [{text:"OK"}]);
             
         }
 
     }
 
     return(
-        <View>
-            <Text>Acesse sua conta</Text>
-            <View>
-                <TextInput
-                    label="Nome de Usuario"
-                    value={username}
-                    onChangeText={name => setUserName(name)}
-                />
-                <TextInput
-                    label="Senha de acesso"
-                    secureTextEntry
-                    value={password}
-                    onChangeText={pass => setPassword(pass)}
-                />
-                <Button 
-                    mode="contained" 
-                    onPress={handleSubmit}
-                    >Entrar</Button>
-                <Button 
-                    mode="contained"
-                    onPress={()=>{
-                        navigation.navigate(Cadastro);
-                    }}>Cadastrar uma conta</Button>
+        <ScrollView style={styles.entrar}>
+            <View style={styles.entrar}>
+                    <View style={styles.modal}>
+                        <TextInput
+                            style={styles.input}
+                            label="Email"
+                            autoComplete={'email'}
+                            keyboardType={'email-address'}
+                            placeholder="Email"
+                            value={username}
+                            onChangeText={name => setUserName(name)}
+                            
+                        />
+                        <TextInput
+                        style={styles.input}
+                            label="Senha de acesso"
+                            placeholder="Senha"
+                            secureTextEntry
+                            value={password}
+                            onChangeText={pass => setPassword(pass)}
+                            
+                        />
+                        <Button 
+                            mode="contained" 
+                            style={styles.butt}
+                            dark= 'true'
+                            color='#211478'
+                            onPress={handleSubmit}
+                            >Entrar</Button>
+                        <Button 
+                            mode="contained"
+                            style={styles.butt}
+                            dark= 'true'
+                            color='#211478'
+                            onPress={()=>{
+                                navigation.navigate(Cadastro);
+                            }}>Cadastrar uma conta</Button>
+                    </View>
             </View>
 
-        </View>
+        </ScrollView>
         )
 }
-
-
 
 export default Login;

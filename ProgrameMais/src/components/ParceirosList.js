@@ -1,19 +1,22 @@
 import React from 'react';
-import {View, Text, Dimensions, StyleSheet, TouchableHighlight} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
+import styles from '../../assets/CSS/stylesCss';
 
 function parceirosList({parce, navigation}){
-    if (parce.length != 0){
-        const textElements = parce.map((partner) =>{
-            const {id_parceiro, descricao_parceiro, nome_parceiro} = partner;
+    
+    if (parce.length != 0){//Pego todas informaçoes que mandei da page e extraio eles aqui
+        const textElements = parce.map((partner) =>{//Faço um destruturing para ficar mais fácil
+            const {id_parceiro, descricao_parceiro, nome_parceiro} = partner;//de trablaha com as informações
+            
             return(
-                <TouchableHighlight onPress={()=>{
-                    navigation.navigate("Parceiros", Parceiros);
+                <TouchableOpacity onPress={()=>{//Deixo os campos clicaveis
+                    navigation.navigate("InfoParceiro", {partner});//Faço a nevageção para o item selecionado
                 }}key={id_parceiro}>
-                    <View style={styles.container}>
-                        <Text style={styles.dicionario}>{`${nome_parceiro}`}</Text>
-                        <Text style={styles.palavras}>{`${descricao_parceiro}`}</Text>
+                    <View style={styles.containerExi}>{/*Aqui faço a exbição em container */}
+                        <Text style={styles.nomeParceiro}>{`${nome_parceiro}`}</Text>
+                        <Text style={styles.descParceiro}>{`${descricao_parceiro}`}</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
             )
         });
 
@@ -29,35 +32,5 @@ function parceirosList({parce, navigation}){
     )
 
 }
-
-
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#E2F9FF',
-        borderBottomColor:"#bbb",
-        borderBottomWidth: 4,
-    },
-    text:{
-        fontSize: 15,
-        paddingLeft: 20,
-        flex: 1
-    },
-    loading:{
-        fontSize: 20,
-        color:'#F00'
-    },
-    palavras:{
-      fontSize: 15,
-      color: '#0f0a0a',
-      padding: 10,
-    },
-    dicionario:{
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#0f0a0a',
-    },
-  });
-
 
 export default parceirosList;

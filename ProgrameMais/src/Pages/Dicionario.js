@@ -2,6 +2,8 @@ import { Text, View, StyleSheet, ScrollView, Dimensions} from 'react-native';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Dici from '../components/DicionarioList';
+import config from "../../Config/config.json";
+import styles from '../../assets/CSS/stylesCss';
 
 function Dicionario(props) {
 
@@ -11,38 +13,29 @@ function Dicionario(props) {
 
   const {navigation} = props;
 
-  const [dici, setDici] = useState([]);
+  const [dici, setDici] = useState([]);//Uso os state para manipular os dados
 
-  useEffect( () => {
-    const request = {
-        "id": "",
-        "palavra": "",
-        "descricao": ""
-    }
-
-    axios.post('http://192.168.100.57/tcc/dicionario/consultarPY', request)
+  useEffect( () => {//Faço uma busca na nossa api que vai no banco e nos tras os dadso requisitados
+    axios.get(config.urlNode+"dicionario")//Acesso o back aatravés do axios
         .then(resposta =>{
-          setDici(resposta.data.dados)
-        }).catch(err =>{
+          setDici(resposta.data)//Se der certo salva as infomações em setDici que passa tudo para dici
+        }).catch(err =>{//Se der errado
           console.log("Ocorreu um erro" + err)
         });
   }, []);
   
     return (
-        <ScrollView>
+        <ScrollView>{/*Construo a estrutura que será exibido os dados */}
 
-        <View>
-          <View style={styles.divisao}>
-              <Text style={styles.text}>Dicionario</Text>
-          </View>
+        <View style={styles.pageColor}>
 
           <View style={styles.divisao}>
-            <Text style={styles.dicionario}>Ache termos que você precisa</Text>
+            <Text style={styles.textCompo}>Encontre os termos que você precisa</Text>
           </View>
 
           <View>
               
-            <Dici dici={dici} navigation={navigation}/>
+            <Dici dici={dici} navigation={navigation}/>{/*Mando as informações para o componente dici para tratar lá */}
 
           </View>
 
@@ -51,31 +44,5 @@ function Dicionario(props) {
       </ScrollView>
     )
 }
-
-const styles= StyleSheet.create({
-  text:{
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#0f0a0a',
-    padding: 20,
-  },
-  dicionario:{
-      fontSize: 20,
-      fontWeight: 'bold',
-      color: '#0f0a0a',
-      padding: 20,
-  },
-  divisao:{
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-  },
-  container: {
-    backgroundColor: '#E2F9FF',
-    borderBottomColor:"#bbb",
-    borderBottomWidth: 4,
-    flexDirection: 'row',
-    alignItems: 'center',
-},
-});
 
 export default Dicionario;
